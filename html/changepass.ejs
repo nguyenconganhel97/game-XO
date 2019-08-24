@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Changepassword</title>
+    <!-- start: GOOGLE FONTS -->
+    <link
+        href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
+        rel="stylesheet" type="text/css" />
+    <!-- end: GOOGLE FONTS -->
+    <!-- start: MAIN CSS -->
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../vendor/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../vendor/themify-icons/themify-icons.min.css">
+    <link href="../../vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
+    <!-- end: MAIN CSS -->
+    <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <link href="../../vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/select2/select2.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet"
+        media="screen">
+    <link href="../../vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
+    <!-- start: CLIP-TWO CSS -->
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../assets/css/plugins.css">
+    <link rel="stylesheet" href="../../assets/css/themes/theme-1.css" id="skin_color" />
+    <!-- end: CLIP-TWO CSS -->
+    <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <style>
+        .jquery-validation-error {
+            color: #ff0000;
+            font-size: 11px;
+            font-style: italic;
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div>
+        <a href="../">Back</a>
+        <form id="myform" method="POST" action="./changepassword" method="POST">
+            pass:<input type="password" name='password' /><br>
+            new:<input type="password" name='repass' /><br>
+            confirm:<input type="password" name='repass' /><br>
+            <input type="button" onclick="myFunction()" value="Change"><br>
+            <% if(locals.changeStatus) { %>
+            <script>
+
+                alert("<%= changeStatus.Message %>");
+
+            </script>
+
+            <%}%>
+        </form>
+    </div> -->
+    <!--form-->
+    <% if(locals.changeStatus){%>
+    <div class="alert <% if(changeStatus.Success==true){ %>
+            alert-success
+         <%}else{ %>
+            alert-danger
+            <%} %>
+            ">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>Kết quả!</strong>
+        <%=changeStatus.Message%>
+    </div>
+    <%}%>
+    
+    <div class="container-fluid">
+            <div class="row">
+
+                    <nav  class=" cl-effect-17">
+                        <a href="../"><i class="fa fa-arrow-left"> Back</i></a>
+                    </nav>
+
+            </div>
+    </div>
+    <div class="container-fluid container-fullw">
+        <div class="row">
+                
+                
+                <div class="panel-body">
+                    <form  class="form-horizontal" method="POST" action="./changepassword" id="form-changepassword" >
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label" >
+                                Password
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="password" name="password" placeholder="Old Password" class="form-control ">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label" >
+                                New
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="password" placeholder="New Password" name="newpass" class="form-control" id="newpass" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-sm-1 control-label" >
+                                    Confirm
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="password" placeholder="Confirm New Password" name="confirmnewpass"  class="form-control">
+                                </div>
+                            </div>
+                        <div class="form-group margin-bottom-0">
+                            <div class="col-sm-offset-5 col-sm-5">
+                                <button class="btn btn-o btn-primary" type="submit" >
+                                    Change
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+        </div>
+    </div>
+
+    <!--end form-->
+    <script>
+        function myFunction() {
+
+            if (document.getElementsByName('repass')[0].value == document.getElementsByName('repass')[1].value) {
+
+                document.getElementById("myform").submit();
+            } else {
+                alert("Vui lòng nhập đúng pass confirm");
+            }
+        }
+    </script>
+    <!-- start: MAIN JAVASCRIPTS -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendor/modernizr/modernizr.js"></script>
+    <script src="../../vendor/jquery-cookie/jquery.cookie.js"></script>
+    <script src="../../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../../vendor/switchery/switchery.min.js"></script>
+    <!-- end: MAIN JAVASCRIPTS -->
+    <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <script src="../../vendor/maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="../../vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="../../vendor/autosize/autosize.min.js"></script>
+    <script src="../../vendor/selectFx/classie.js"></script>
+    <script src="../../vendor/selectFx/selectFx.js"></script>
+    <script src="../../vendor/select2/select2.min.js"></script>
+    <script src="../../vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../../vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+
+    <script src="../../vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- <script src="../../assets/js/login.js"></script> -->
+    <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <!-- start: CLIP-TWO JAVASCRIPTS -->
+    <!-- <script src="../../assets/js/main.js"></script> -->
+    <!-- start: JavaScript Event Handlers for this page -->
+    <!-- <script src="../../assets/js/form-elements.js"></script> -->
+    <script>
+        jQuery(document).ready(function () {
+            $('#form-changepassword').validate({
+                errorClass: 'jquery-validation-error',
+                rules: {
+                    password: {
+                        minlength: 2,
+                        required: true
+                    },
+                    newpass: {
+                        minlength: 2,
+                        required: true
+                    },
+                    confirmnewpass: {
+                        minlength: 2,
+                        required: true,
+                        equalTo: '#newpass'
+                    }
+                },
+                messages: {
+                    password: {
+                        minlength: "Không được ít hơn {0} ký tự",
+                        required: "Không được bỏ trống"
+                    },
+                    newpass: {
+                        minlength: "Không được ít hơn {0} ký tự",
+                        required: "Không được bỏ trống"
+                    },
+                    confirmnewpass: {
+                        minlength: "Không được ít hơn {0} ký tự",
+                        required: "Không được bỏ trống",
+                        equalTo: "Vui lòng nhập đúng password mới"
+                    }
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- Template Name: Clip-Two - Responsive Admin Template build with Twitter Bootstrap 3.x | Author: ClipTheme -->
+<!--[if IE 8]><html class="ie8" lang="en"><![endif]-->
+<!--[if IE 9]><html class="ie9" lang="en"><![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- start: HEAD -->
+<!-- start: HEAD -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trang Đăng Ký</title>
+    <!-- start: GOOGLE FONTS -->
+    <link
+        href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
+        rel="stylesheet" type="text/css" />
+    <!-- end: GOOGLE FONTS -->
+    <!-- start: MAIN CSS -->
+    <link rel="stylesheet" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../vendor/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../vendor/themify-icons/themify-icons.min.css">
+    <link href="../../vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
+    <!-- end: MAIN CSS -->
+    <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <link href="../../vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/select2/select2.min.css" rel="stylesheet" media="screen">
+    <link href="../../vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet"
+        media="screen">
+    <link href="../../vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
+    <!-- start: CLIP-TWO CSS -->
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../assets/css/plugins.css">
+    <link rel="stylesheet" href="../../assets/css/themes/theme-1.css" id="skin_color" />
+    <!-- end: CLIP-TWO CSS -->
+    <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
+    <style>
+        .my-jquery-validation-error {
+            color: #ff0000;
+            font-size: 11px;
+            font-style: italic;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<!-- end: HEAD -->
+<!-- start: BODY -->
+
+<body class="login">
+    <!-- start: REGISTRATION -->
+    <% if(locals.registerStatus){%>
+    <div class="alert <% if(registerStatus.success==true){ %>
+                alert-success
+             <%}else{ %>
+                alert-danger
+                <%} %>
+                ">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>Kết quả!</strong>
+        <%=registerStatus.message%>
+    </div>
+    <%}%>
+        
+    <div class="row">
+        <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+            <div class="logo margin-top-30">
+                <img src="../../assets/images/logo.png" alt="Clip-Two" />
+            </div>
+            <!-- start: REGISTER BOX -->
+            <div class="box-register">
+                <form class="form-register" id="form-register" method="POST" action="./register" >
+                    <fieldset>
+                        <legend>
+                            Sign Up
+                        </legend>
+                        <p>
+                            Enter your personal details below:
+                        </p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="full_name" placeholder="Full Name">
+                        </div>
+                        
+                        <p>
+                            Enter your account details below:
+                        </p>
+                        <div class="form-group">
+                            <span class="input-icon">
+                                <input type="email" class="form-control" name="email" placeholder="Email">
+                                <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="input-icon">
+                                <input type="text" class="form-control" name="username" placeholder="Username">
+                                <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="input-icon">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Password">
+                                <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <div class="form-group">
+                            <span class="input-icon">
+                                <input type="password" class="form-control" name="confirmpass"
+                                    placeholder="Password Again">
+                                <i class="fa fa-lock"></i> </span>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <p>
+                                Already have an account?
+                                <a href="../../">
+                                    Log-in
+                                </a>
+                            </p>
+                            <button type="submit" class="btn btn-primary pull-right">
+                                Submit <i class="fa fa-arrow-circle-right"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+                <!-- start: COPYRIGHT -->
+                <div class="copyright">
+                    &copy; <span class="current-year"></span><span class="text-bold text-uppercase"> ClipTheme</span>.
+                    <span>All rights reserved</span>
+                </div>
+                <!-- end: COPYRIGHT -->
+            </div>
+            <!-- end: REGISTER BOX -->
+        </div>
+    </div>
+    <!-- end: REGISTRATION -->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../vendor/modernizr/modernizr.js"></script>
+    <script src="../../vendor/jquery-cookie/jquery.cookie.js"></script>
+    <script src="../../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../../vendor/switchery/switchery.min.js"></script>
+    <!-- end: MAIN JAVASCRIPTS -->
+    <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+    <script src="../../vendor/maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="../../vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="../../vendor/autosize/autosize.min.js"></script>
+    <script src="../../vendor/selectFx/classie.js"></script>
+    <script src="../../vendor/selectFx/selectFx.js"></script>
+    <script src="../../vendor/select2/select2.min.js"></script>
+    <script src="../../vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="../../vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+
+    <script src="../../vendor/jquery-validation/jquery.validate.min.js"></script>
+
+
+<script>
+    jQuery(document).ready(function () {
+        $('#form-register').validate({
+            errorClass: 'my-jquery-validation-error',
+            rules: {
+                full_name:{
+                    minlength:2,
+                    required:true
+                },
+                password: {
+                    minlength: 2,
+                    required: true
+                },
+                username: {
+                    minlength: 2,
+                    required: true
+                }
+                ,
+                email: {
+                    minlength: 2,
+                    required: true
+                },
+                confirmpass: {
+                    minlength: 2,
+                    required: true,
+                    equalTo: '#password'
+                }
+            },
+            messages: {
+                password: {
+                    minlength: "Không được ít hơn {0} ký tự",
+                    required: "Không được bỏ trống"
+                },
+                email: {
+                    minlength: "Không được ít hơn {0} ký tự",
+                    required: "Không được bỏ trống"
+                },
+                username: {
+                    minlength: "Không được ít hơn {0} ký tự",
+                    required: "Không được bỏ trống"
+                },
+                confirmpass: {
+                    minlength: "Không được ít hơn {0} ký tự",
+                    required: "Không được bỏ trống",
+                    equalTo: "Vui lòng nhập đúng password"
+                }
+            }
+        })
+
+    });
+</script>
+</body>
+<!-- end: BODY -->
+
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="./socket.io-2.2.0.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style>
+        .avtChat {
+            height: 50px;
+            width: 50px
+        }
+    </style>
+    <title>
+
+    </title>
+</head>
+
+<body>
+    <input type="hidden" id='se' name="<%= mySess['Name'];%>"
+        value='{"Name":"<%= mySess["Name"]%>","Id":"<%= mySess["Id"]%>"}'>
+    <div class='container-fluid'>
+        <div class='row' id='my-header' style="background-color:rgb(144, 231, 63); padding-top: 6px;">
+            <div class='col'>
+                <img id='avt' src="<%= mySess['AvtUrl'] %>" style="height:40px; width:40px" class="rounded-circle">
+                <%= mySess['Name'];%> <br>
+                <a href="/User/logout">logout</a></div>
+        </div>
+        <br>
+        <div class='row' id='my-body' style="margin-bottom: 8px;">
+            <div class='col-10 py-2 px-4 border bg-light' style=" height: 600px; overflow-y: scroll" id='chat-content'>
+            </div>
+            <div class='col-2 border border-primary rounded' style=" overflow-y: scroll" id='list-user-online'>
+                list user online div
+                <br>
+            </div>
+        </div>
+
+        <div class='row' id='my-footer'>
+            <div class='col-10'>
+                <div class='row'>
+                    <div class='col-11'>
+                        <input type="text" id='text-send' class="form-control" placeholder="Message..." required>
+                    </div>
+                    <div class='col-1'>
+                        <button type="button" class="btn btn-primary" onclick="sendmessage();">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <button type="button" id='cll' style="display:none" class="btn btn-info btn-lg" data-toggle="modal"
+        data-target="#myModal">Open Modal</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="creat Name"> <button onClick=""></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="../jsx/person.jsx" type="text/babel"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('text-send').onkeydown = function (event) {
+            if (event.keyCode == 13) {
+                sendmessage()
+            }
+
+        }
+        function appendToChatContent(data) {
+            if (data['Name'] == $('#se').attr('Name')) {
+                buildMeChat(data);
+                var elem = document.getElementById('chat-content');
+                elem.scrollTop = elem.scrollHeight;
+                return;
+            }
+            else {
+                buildOtherChat(data);
+                var elem = document.getElementById('chat-content');
+                elem.scrollTop = elem.scrollHeight;
+                return;
+            }
+        }
+        function buildMeChat(data) {
+            var strAppend = "<div class='row'><div class='col-5'></div><div class='col-7 text-right alert alert-primary border border-primary rounded'><span>" + data['Message'] + "</span></div></div>"
+            $('#chat-content').append(strAppend)
+        }
+        function buildOtherChat(data) {
+            var strAppend = "<div class='row'><div class='col-1'><img src='" + data['AvtUrl'] + "' alt='" + data['Name'] + "' class='avtChat' class='rounded-circle'></div>"
+                + "<div class='col-7 text-left alert alert-primary border border-primary rounded' style='margin-bottom: 8px;'>"
+                + "<span >" + data['Message'] + "</span></div></div>"
+            $('#chat-content').append(strAppend)
+        }
+
+        var socket = io('localhost:3001').connect();
+        socket.emit('Init', $('#se').val());
+        socket.on('Load Chat Log', function (data) {
+
+            data.forEach(element => {
+                appendToChatContent(element);
+            });
+            console.log("receive chatlog: " + data)
+            var textarea = document.getElementById('chat-content');
+            textarea.scrollTop = textarea.scrollHeight;
+        })
+        socket.on('updateUsersList', function (data) {
+            // $('#list-user-online').text(data)
+            document.getElementById('list-user-online').innerHTML = data
+            console.log("new users list: " + data)
+        })
+
+        socket.on('System Response New Message', function (data) {
+            appendToChatContent(data)
+        })
+
+        function sendmessage() {
+            if ($('#text-send').val() != "")
+                socket.emit('System Call Send Message', JSON.stringify({ Name: $('#se').attr('Name'), Message: $('#text-send').val(), AvtUrl: $('#avt').attr('src') }))
+            $('#text-send').val("")
+        };
+    </script>
+
+</body>
+
+</html>

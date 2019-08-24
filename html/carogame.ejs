@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="../socket.io-2.2.0.js"></script>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <script src="../jquery.min.js"></script>
+    <script src="../popper.min.js"></script>
+    <script src="../bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react@16.8.6/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <title>Game caro</title>
+    <style>
+        table.fixed {
+            table-layout: fixed;
+        }
+
+        table.fixed td {
+            width: 20px;
+            font-size:16pt;
+            height:20px;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <div class='container-fluid'>
+        <div class='row' id='my-header' style="background-color:rgb(144, 231, 63); padding-top: 6px;">
+            <div class='col'>
+                info:<br>
+                username:<input type="text" id="username" value='<%=username%>' disabled />
+                token:<input type="text" id="token" value='<%=token%>' disabled /><br>
+                <a href="/qltk/logout">logout</a>
+            </div>
+        </div>
+        <br>
+        <div class='row' id='my-body' style="margin-bottom: 8px;">
+            <div class='col-2 border border-primary rounded' style=" overflow-y: scroll" id='list-room'>
+                <div class="row">
+                    <div class="col-7">
+                        <input type="number" max=0 min="1000" id="txtbRoomId" value="0" />
+                    </div>
+                    <div class="col-2">
+                        <button onClick="createRoom()">Tạo</button>
+
+                    </div>
+                    <div class="col-2">
+                        <button onClick="joinRoom()">Vào</button>
+
+                    </div>
+
+
+
+                </div>
+
+                <br>
+                <center><b>List Room</b></center>
+                <br>
+                <div style="width:100%" id="room-list">
+                </div>
+                <br>
+            </div>
+            <div class='col-9 py-2 px-4 border bg-light' style=" height: 700px" id='room-content'>
+                <div class='row'>
+                    <div class='col-10' id="main-content">
+                        main content.
+                    </div>
+                    <div class='col-2 border border-primary rounded' id='room-listviewer'
+                        style=" height: 500px; overflow-y: scroll" id='list-user-online'>
+                        list viewer
+                        <br>
+                    </div>
+                </div>
+            </div>
+            
+            <div class='col-1 border border-primary rounded' style=" overflow-y: scroll" id='list-user-online'>
+                List online
+                <br>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="myModal">
+        <script src="../jsx/AllComponent.jsx" type="text/babel"></script>
+</body>
+
+</html>
